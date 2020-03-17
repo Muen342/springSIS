@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.springsis.model.Course;    
 
 public class CourseDao {
-	JdbcTemplate template;
+	JdbcTemplate template = new JdbcTemplate();
 	
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
@@ -39,7 +39,23 @@ public class CourseDao {
 	}
 	
 	public List<Course> getCourses() {
+		System.out.println(template);
 		return template.query("select * from courses;", new RowMapper<Course>() {
+			public Course mapRow(ResultSet rs, int row) throws SQLException {
+				Course c = new Course();
+				c.setId(rs.getInt(1));
+				c.setTitle(rs.getString(2));
+				c.setDescription(rs.getString(3));
+				c.setTeacher(rs.getString(4));
+				c.setCredits(rs.getFloat(5));
+				c.setStudents(rs.getString(6));
+				c.setCode(rs.getString(7));
+				return c;
+			}
+		});
+	}
+	public List<Course> getStudentCourses(int studId) {
+		return template.query("select * from courses where students like '%*" + studId + "*%';", new RowMapper<Course>() {
 			public Course mapRow(ResultSet rs, int row) throws SQLException {
 				Course c = new Course();
 				c.setId(rs.getInt(1));

@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;    
 import org.springframework.web.bind.annotation.RequestMethod;     
 import com.springsis.model.Student;  
-import com.springsis.dao.StudentDAO;;  
+import com.springsis.dao.StudentDAO;
+import com.springsis.dao.CourseDao;
+import com.springsis.model.Course;
 @Controller
 public class StudentController {
 	@Autowired
 	StudentDAO dao;
+	CourseDao course_dao = new CourseDao();
 	@RequestMapping("/studentform")    
     public String showform(Model m){    
         m.addAttribute("command", new Student()); 

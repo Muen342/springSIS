@@ -60,5 +60,11 @@ public class CourseController {
     	course_dao.delete(id);    
         return "redirect:/viewcourse";    
     }    
+    @RequestMapping("/studentcourses/{id}")    
+    public String viewstudentcourses(@PathVariable int id, Model m){ 
+    	List<Course> list=course_dao.getStudentCourses(id);  
+        m.addAttribute("list", list); 
+        return "studentcourses";   
+    }    
 
 }
