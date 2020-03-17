@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;    
 import org.springframework.jdbc.core.JdbcTemplate;    
 import org.springframework.jdbc.core.RowMapper;    
-import com.springsis.model.Student;;    
+import com.springsis.model.Student; 
 
 public class StudentDAO {    
 JdbcTemplate template;    
