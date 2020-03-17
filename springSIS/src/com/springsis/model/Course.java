@@ -1,4 +1,4 @@
-package com.springsis.model;
+package com.springsis.model;   
 
 public class Course {
 	
