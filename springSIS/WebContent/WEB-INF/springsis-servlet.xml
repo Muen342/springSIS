@@ -38,6 +38,9 @@
 	<bean id="course_dao" class="com.springsis.dao.CourseDao">    
 	<property name="template" ref="jt"></property>    
 	</bean> 
+	<bean id="attendance_dao" class="com.springsis.dao.AttendanceDao">    
+	<property name="template" ref="jt"></property>    
+	</bean> 
 
  
 </beans>

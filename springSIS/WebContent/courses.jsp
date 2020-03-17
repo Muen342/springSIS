@@ -10,5 +10,6 @@
 	<a href="courseform">Add Course</a>  
 	<br>
 	<a href="viewcourse">View Course</a> 
+	<br><br><a href="index.jsp">Back</a> 
 </body>
 </html>

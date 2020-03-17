@@ -6,7 +6,7 @@ public class Attendance {
 	private String date;
 	private int student_id;
 	private int course_id;
-	private char attendance;
+	private String attendance;
 	
 	public int getId() {
 		return id;
@@ -32,10 +32,10 @@ public class Attendance {
 	public void setCourse_id(int course_id) {
 		this.course_id = course_id;
 	}
-	public char getAttendance() {
+	public String getAttendance() {
 		return attendance;
 	}
-	public void setAttendance(char attendance) {
+	public void setAttendance(String attendance) {
 		this.attendance = attendance;
 	}
 	

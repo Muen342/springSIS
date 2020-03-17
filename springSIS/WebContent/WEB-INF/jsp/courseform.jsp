@@ -40,5 +40,7 @@
          </tr>    
         </table>    
        </form:form>    
+       
+       <br><br><a href="courses.jsp">Back</a> 
 </body>
 </html>

@@ -43,7 +43,9 @@
           <td><input type="submit" value="Edit Save" /></td>    
          </tr>    
         </table>    
-       </form:form>    
+       </form:form>   
+       
+       <br><br><a href="/springSIS/viewcourse">Back</a>  
 
 </body>
 </html>
