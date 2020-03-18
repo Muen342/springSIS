@@ -1,6 +1,7 @@
 package com.springsis.dao;
 import java.sql.ResultSet;    
-import java.sql.SQLException;    
+import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.List;    
 import org.springframework.jdbc.core.BeanPropertyRowMapper;    
 import org.springframework.jdbc.core.JdbcTemplate;    
@@ -44,7 +45,7 @@ public class AttendanceDao {
 			public Attendance mapRow(ResultSet rs, int row) throws SQLException {
 				Attendance c = new Attendance();
 				c.setId(rs.getInt(1));
-				c.setDate(rs.getString(2));
+				c.setDate(rs.getDate(2).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				c.setAttendance(rs.getString(3));
 				c.setCourse_id(rs.getInt(4));
 				c.setStudent_id(rs.getInt(5));
@@ -58,7 +59,7 @@ public class AttendanceDao {
 			public Attendance mapRow(ResultSet rs, int row) throws SQLException {
 				Attendance c = new Attendance();
 				c.setId(rs.getInt(1));
-				c.setDate(rs.getString(2));
+				c.setDate(rs.getDate(2).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				c.setAttendance(rs.getString(3));
 				c.setCourse_id(rs.getInt(4));
 				c.setStudent_id(rs.getInt(5));
