@@ -44,6 +44,7 @@
          </tr>    
         </table>    
        </form:form>    
+       <br><a href="/springSIS/viewcourse">Back</a> 
 
 </body>
 </html>

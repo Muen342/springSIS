@@ -28,6 +28,7 @@
    </table>  
    <br/>  
    <a href="courseform">Add New Course</a> 
-
+   <br><a href="/springSIS/courses.jsp">Back</a> 
+	
 </body>
 </html>
