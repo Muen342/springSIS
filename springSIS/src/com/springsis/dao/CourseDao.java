@@ -1,6 +1,9 @@
 package com.springsis.dao;
 import java.sql.ResultSet;    
-import java.sql.SQLException;    
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;    
 import org.springframework.jdbc.core.BeanPropertyRowMapper;    
 import org.springframework.jdbc.core.JdbcTemplate;    
@@ -50,6 +53,33 @@ public class CourseDao {
 	public Student getStudent(int id) {
 		String sql = "select * from students where id=? ;";
 		return template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<Student>(Student.class));
+	}
+	
+	public List<String> getAttendances(int course, int student) {
+		String sql = "select * from attendance where student_id = " + student + " and course_id = " + course + " order by date asc;";
+		List <String> att = template.query(sql, new RowMapper<String>() {
+			public String mapRow(ResultSet rs, int row) throws SQLException {
+				return rs.getString(3);
+			}
+		});
+		return att;
+	}
+	
+	public String getStudentNameById(int id) {
+		String sql = "select * from students where id=? ;";
+		Student s = template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<Student>(Student.class));
+		String name = s.getSurname() + ", " + s.getName();
+		return name;
+	}
+	
+	public List<Date> getAttendanceDates(int course) {
+		String sql = "select distinct date from attendance where course_id = " + course + " order by date asc;";
+		List <Date> dates = template.query(sql, new RowMapper<Date>() {
+			public Date mapRow(ResultSet rs, int row) throws SQLException {
+				return rs.getDate(1);
+			}
+		});
+		return dates;
 	}
 	
 	public List<Course> getCourses() {

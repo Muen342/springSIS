@@ -1,6 +1,9 @@
 package com.springsis.controller;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Iterator;
 
@@ -27,7 +30,6 @@ public class CourseController {
     CourseDao course_dao;//will inject dao from XML file  
 	StudentDAO dao = new StudentDAO();
 	AttendanceDao attendance_dao = new AttendanceDao();
-	//StudentDAO dao;
          
     @RequestMapping("/courseform")    
     public String showform(Model m){    
@@ -91,7 +93,36 @@ public class CourseController {
     	m.addAttribute("students", student_list);
     	return "editattendance";
     }
-
+    
+    @RequestMapping(value="/showattendance/{id}")
+    public String showattendance(@PathVariable int id, Model m) {
+    	Course course = course_dao.getCourseById(id);
+    	m.addAttribute("course", course);
+    	
+    	List<String> students = Arrays.asList(course.getStudents().split(","));
+    	int numStudents = students.size();
+    	HashMap<String, List<String> > attendance = new HashMap<String, List<String> >();
+    	List<String> student_list = new ArrayList<String>();
+    	for (int i = 0; i < numStudents; i++) {
+    		int student_id = Integer.parseInt(students.get(i).substring(1, students.get(i).length()-1));
+    		List<String> att = course_dao.getAttendances(id, student_id);
+    		student_list.add(course_dao.getStudentNameById(student_id));
+    		String name = course_dao.getStudentNameById(student_id);
+    		attendance.put(name, att);
+    	}
+    	
+    	List<Date> dates = course_dao.getAttendanceDates(id);
+    	
+    	
+    	System.out.println(attendance);
+    	System.out.println(dates);
+    	
+    	m.addAttribute("dates", dates);
+    	m.addAttribute("students", student_list);
+    	m.addAttribute("attendance", attendance);
+    	
+    	return "showattendance";
+    }
 
     @RequestMapping(value="/editcourse/{id}")    
     public String edit(@PathVariable int id, Model m){  

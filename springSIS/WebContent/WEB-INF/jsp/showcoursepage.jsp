@@ -18,6 +18,7 @@
 	<p>Teacher: ${course.teacher}</p>
 	
 	<br><a href="/springSIS/editattendance/${course.id}">Edit Attendance</a>
+	<br><a href="/springSIS/showattendance/${course.id}">Show Attendance</a>
    <br>  
    <br><a href="/springSIS/viewcourse">Back</a> 
  
