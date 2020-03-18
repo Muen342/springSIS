@@ -20,7 +20,8 @@
 	   <input type="submit" value="Save" />   
 	</form>    
 	
-
+<br>  
+   <br><a href="/springSIS/showcourse/${course.id }">Back</a> 
    
 </body>
 </html>

@@ -81,6 +81,9 @@ public class CourseController {
     	m.addAttribute("course", course);
     	
     	List<String> students = Arrays.asList(course.getStudents().split(","));
+    	if (!students.get(0).startsWith("*")) {
+    		return "editattendance";
+    	}
     	int numStudents = students.size();
     	List<Student> student_list = new ArrayList<Student>();
     	for (int i = 0; i < numStudents; i++) {
@@ -100,6 +103,9 @@ public class CourseController {
     	m.addAttribute("course", course);
     	
     	List<String> students = Arrays.asList(course.getStudents().split(","));
+    	if (!students.get(0).startsWith("*")) {
+    		return "showattendance";
+    	}
     	int numStudents = students.size();
     	HashMap<String, List<String> > attendance = new HashMap<String, List<String> >();
     	List<String> student_list = new ArrayList<String>();

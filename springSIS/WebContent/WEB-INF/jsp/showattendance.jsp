@@ -28,5 +28,8 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<br>  
+   <br><a href="/springSIS/showcourse/${course.id }">Back</a> 
 </body>
 </html>
