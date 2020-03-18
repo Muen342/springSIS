@@ -40,7 +40,6 @@
          </tr>    
         </table>    
        </form:form>    
-       
-       <br><br><a href="courses.jsp">Back</a> 
+       <br><a href="/springSIS/courses.jsp">Back</a> 
 </body>
 </html>

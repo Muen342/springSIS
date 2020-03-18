@@ -26,8 +26,10 @@ public int delete(int id){
     return template.update(sql);    
 }    
 public Student getStudentById(int id){    
-    String sql="select * from Students where id=?";    
-    return template.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<Student>(Student.class));    
+    String sql="select * from Students where id=? ;";   
+    System.out.println(sql);
+    System.out.println(id);
+    return template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<Student>(Student.class));    
 }    
 public List<Student> getStudents(){    
     return template.query("select * from Students",new RowMapper<Student>(){    

@@ -3,7 +3,7 @@
   
 <h1>Students List</h1>  
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>Id</th><th>Name</th><th>Surname</th><th>Grade</th><th>Edit</th><th>Delete</th></tr>  
+<tr><th>Id</th><th>Name</th><th>Surname</th><th>Grade</th><th>Edit</th><th>Delete</th><th>Courses</th></tr>  
    <c:forEach var="student" items="${list}">   
    <tr>  
    <td>${student.id}</td>  
@@ -12,8 +12,10 @@
    <td>${student.grade}</td>  
    <td><a href="editstudent/${student.id}">Edit</a></td>  
    <td><a href="deletestudent/${student.id}">Delete</a></td>  
+   <td><a href="studentcourses/${student.id}">Courses</a></td> 
    </tr>  
    </c:forEach>  
    </table>  
    <br/>  
    <a href="studentform">Add New Student</a>  
+   <br><a href="students.jsp">Back</a> 

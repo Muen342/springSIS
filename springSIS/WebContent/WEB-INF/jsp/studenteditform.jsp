@@ -27,3 +27,4 @@
          </tr>    
         </table>    
        </form:form>    
+       <br><a href="/springSIS/viewstudent">Back</a> 
