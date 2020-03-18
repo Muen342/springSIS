@@ -32,16 +32,21 @@ public class CourseController {
   
     @RequestMapping("/viewcourse")    
     public String viewcourse(Model m){  
-    	System.out.println("hiiiii i'm hereeeeee");
         List<Course> list=course_dao.getCourses();    
         m.addAttribute("list",list);  
         return "viewcourse";    
-    }    
+    }
+    
+    @RequestMapping("/showcourse/{id}")
+    public String showcourse(@PathVariable int id, Model m)  {
+    	Course course = course_dao.getCourseById(id);
+    	m.addAttribute("course", course);
+    	return "showcoursepage";
+    }
 
 
     @RequestMapping(value="/editcourse/{id}")    
-    public String edit(@PathVariable int id, Model m){    
-    	System.out.println("edit CoOURSE");
+    public String edit(@PathVariable int id, Model m){  
         Course course=course_dao.getCourseById(id);    
         m.addAttribute("command",course);  
         return "courseeditform";    
