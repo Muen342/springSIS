@@ -1,20 +1,33 @@
 package com.springsis.controller;
-import java.util.List;    
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;    
 import org.springframework.stereotype.Controller;  
 import org.springframework.ui.Model;  
 import org.springframework.web.bind.annotation.ModelAttribute;    
 import org.springframework.web.bind.annotation.PathVariable;    
 import org.springframework.web.bind.annotation.RequestMapping;    
-import org.springframework.web.bind.annotation.RequestMethod;     
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
+
 import com.springsis.model.Course;
 import com.springsis.dao.CourseDao;
+import com.springsis.model.Attendance;
+import com.springsis.dao.AttendanceDao;
+import com.springsis.model.Student;  
+import com.springsis.dao.StudentDAO;
 
 @Controller
 public class CourseController {
 	
 	@Autowired    
-    CourseDao course_dao;//will inject dao from XML file    
+    CourseDao course_dao;//will inject dao from XML file  
+	StudentDAO dao = new StudentDAO();
+	AttendanceDao attendance_dao = new AttendanceDao();
+	//StudentDAO dao;
          
     @RequestMapping("/courseform")    
     public String showform(Model m){    
@@ -37,11 +50,46 @@ public class CourseController {
         return "viewcourse";    
     }
     
-    @RequestMapping("/showcourse/{id}")
+    @RequestMapping(value="/showcourse/{id}")
     public String showcourse(@PathVariable int id, Model m)  {
     	Course course = course_dao.getCourseById(id);
     	m.addAttribute("course", course);
     	return "showcoursepage";
+    }
+    
+    @RequestMapping(value="/saveattendance/{id}",method = RequestMethod.POST)    
+    public String saveattendance(WebRequest request, @PathVariable int id){    
+    	Iterator<String> params = request.getParameterNames();
+    	while (params.hasNext()) {
+    		String s = params.next();
+    		Attendance a = new Attendance();
+    		a.setDate(java.time.LocalDate.now());
+    		a.setCourse_id(id);
+    		int student_id = Integer.parseInt(s);
+    		a.setStudent_id(student_id);
+    		a.setAttendance(request.getParameter(s));
+    		course_dao.saveAttendance(a);
+    	}  
+        return "redirect:/showcourse/{id}";  
+    }    
+    
+    @RequestMapping(value="/editattendance/{id}")
+    public String editattendance(@PathVariable int id, Model m)  {
+    	Course course = course_dao.getCourseById(id);
+    	m.addAttribute("course", course);
+    	
+    	List<String> students = Arrays.asList(course.getStudents().split(","));
+    	int numStudents = students.size();
+    	List<Student> student_list = new ArrayList<Student>();
+    	for (int i = 0; i < numStudents; i++) {
+    		int student_id = Integer.parseInt(students.get(i).substring(1, students.get(i).length()-1));
+    		
+    		Student s = course_dao.getStudent(student_id);
+    		student_list.add(s);
+    	}
+    	
+    	m.addAttribute("students", student_list);
+    	return "editattendance";
     }
 
 

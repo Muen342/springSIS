@@ -1,12 +1,14 @@
 package com.springsis.model;
 
+import java.time.LocalDate;
+
 public class Attendance {
 	
 	private int id;
-	private String date;
+	private LocalDate date;
 	private int student_id;
 	private int course_id;
-	private char attendance;
+	private String attendance;
 	
 	public int getId() {
 		return id;
@@ -14,11 +16,11 @@ public class Attendance {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(LocalDate localDate) {
+		this.date = localDate;
 	}
 	public int getStudent_id() {
 		return student_id;
@@ -32,10 +34,10 @@ public class Attendance {
 	public void setCourse_id(int course_id) {
 		this.course_id = course_id;
 	}
-	public char getAttendance() {
+	public String getAttendance() {
 		return attendance;
 	}
-	public void setAttendance(char attendance) {
+	public void setAttendance(String attendance) {
 		this.attendance = attendance;
 	}
 	

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;    
 import org.springframework.jdbc.core.JdbcTemplate;    
 import org.springframework.jdbc.core.RowMapper;    
-import com.springsis.model.Course;    
+import com.springsis.model.Course;  
+import com.springsis.model.Student;  
+import com.springsis.model.Attendance;  
 
 public class CourseDao {
 	JdbcTemplate template = new JdbcTemplate();
@@ -18,6 +20,13 @@ public class CourseDao {
 		String sql = "insert into courses(title, description, teacher, credits, students, code)"
 				+ " values('" + c.getTitle() + "', '" + c.getDescription() + "','" + c.getTeacher() + "','" +
 				c.getCredits() + "','" + c.getStudents() + "','" + c.getCode() + "');";
+		return template.update(sql);
+	}
+	
+	public int saveAttendance(Attendance a) {
+		String sql = "insert into attendance(date, attendance, course_id, student_id)"
+				+ " values('" + a.getDate() + "', '" + a.getAttendance() + "'," + a.getCourse_id()+ " ," +
+				a.getStudent_id() + ");";
 		return template.update(sql);
 	}
 	
@@ -36,6 +45,11 @@ public class CourseDao {
 	public Course getCourseById(int id) {
 		String sql = "select * from courses where id=? ;";
 		return template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<Course>(Course.class));
+	}
+	
+	public Student getStudent(int id) {
+		String sql = "select * from students where id=? ;";
+		return template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<Student>(Student.class));
 	}
 	
 	public List<Course> getCourses() {

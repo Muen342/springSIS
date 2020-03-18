@@ -17,7 +17,7 @@
 	<p>Credits: ${course.credits}</p>
 	<p>Teacher: ${course.teacher}</p>
 	
-	<%-- <br><a href="editattendance/${course.id}">Edit Attendance</a> --%>
+	<br><a href="/springSIS/editattendance/${course.id}">Edit Attendance</a>
    <br>  
    <br><a href="/springSIS/viewcourse">Back</a> 
  
