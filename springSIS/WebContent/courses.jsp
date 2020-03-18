@@ -10,5 +10,6 @@
 	<a href="courseform">Add Course</a>  
 	<br>
 	<a href="viewcourse">View Course</a> 
+	<br><a href="/springSIS/">Back</a> 
 </body>
 </html>

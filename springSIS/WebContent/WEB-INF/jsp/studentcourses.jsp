@@ -26,3 +26,4 @@
    <br/>  
 </body>
 </html>
+<br><a href="/springSIS/viewstudent">Back</a> 
